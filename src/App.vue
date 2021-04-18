@@ -1,28 +1,21 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <jobs-list :url="jobsUrl" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import JobsList from './components/JobsList.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    JobsList
+  },
+  data() {
+    return {
+      jobsUrl: 'http://careers.pageuppeople.com/1029/val/en/jobs.json',
+    };
+  },
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
