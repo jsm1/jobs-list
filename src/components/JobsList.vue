@@ -1,53 +1,67 @@
 <template>
     <div>
         <div v-if="!selectedJob" class="jobs-list">
-            <div class="jobs-fields jobs-field-headers">
-                <div class="job-field job-field--position">Position</div>
-                <div class="job-field job-field--type">Type</div>
-                <div class="job-field job-field--location">Location</div>
-                <div class="job-field job-field--closing">Closing</div>
-            </div>
-            <div
-                v-for="job in filteredJobs"
-                :key="job.Id"
-                class="jobs-fields">
-                <div class="job-field job-field--position">
-                    <a :href="'#jobs/' + job.Id">{{ job.Title }}</a>
-                    <p>{{ job.Summary }}</p>
+            <div class="jobs-fields-flex-parent">
+                <div class="job-fields-flex-child">
+                    <div class="jobs-fields jobs-field-headers">
+                    <div class="job-field job-field--position">Position</div>
+                    <div class="job-field job-field--type">Type</div>
+                    <div class="job-field job-field--location">Location</div>
+                    <div class="job-field job-field--closing">Closing</div>
                 </div>
-                <div class="job-field job-field--type">{{ job.workTypesList }}</div>
-                <div class="job-field job-field--location">{{ job.locationsList }}</div>
-                <div class="job-field job-field--closing">{{ job.closingDate }}</div>
-            </div>
-            <div class="job-filters">
                 <div
-                    v-for="filter in filterOptions"
-                    :key="filter.label">
-                    <p>{{ filter.label }}:</p>
+                    v-for="job in filteredJobs"
+                    :key="job.Id"
+                    class="jobs-fields">
+                    <div class="job-field job-field--position">
+                        <a class="job-title" :href="'#jobs/' + job.Id" >{{ job.Title }}</a>
+                        <p>{{ job.Summary }}</p>
+                    </div>
+                    <div class="job-field job-field--type">{{ job.workTypesList }}</div>
+                    <div class="job-field job-field--location">{{ job.locationsList }}</div>
+                    <div class="job-field job-field--closing">{{ job.closingDate }}</div>
+                </div>
+            </div>
+            <div class="jobs-fields-flex-child" id="job-filter">
+                <div class="job-filters">
                     <div
-                        v-for="(transformedOption, option) in filter.options"
-                        :key="option">
-                        <label>
-                            <input v-model="appliedFilters[filter.field]" :value="option" type="checkbox">
-                            {{ transformedOption }}
-                        </label>
+                        v-for="filter in filterOptions"
+                        :key="filter.label" class="filter-title">
+                        <p><strong>{{ filter.label }}:</strong></p>
+                        <div
+                            v-for="(transformedOption, option) in filter.options"
+                            :key="option">
+                            <label>
+                                <input v-model="appliedFilters[filter.field]" :value="option" type="checkbox">
+                                {{ transformedOption }}
+                            </label>
+                        </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
         <div
             v-else
             class="job-detail-view">
-            <p>{{ selectedJob.Title }}</p>
-            <a :href="selectedJob.ApplyUrl" target="_blank">Apply now</a>
-            <p>Job no: {{ selectedJob.Id }}</p>
-            <p>Work type: {{ selectedJob.workTypesList }}</p>
-            <p>Location: {{ selectedJob.locationsList }}</p>
-            <p>Categories: {{ selectedJob.categoriesList }}</p>
+            <div class="job-detail-view--hero">
+                <p class="job-title">{{ selectedJob.Title }}</p>
+                <div class="job-detail-view--buttons">
+                 <a :href="selectedJob.ApplyUrl" target="_blank" class="button">Apply now</a>
+                <p><a href="#" class="job-detail-view--text-link">Back to job listings</a></p>
+                </div>
+            </div>
+            <p><strong>Job no:</strong> {{ selectedJob.Id }}</p>
+            <p><strong>Work type:</strong> {{ selectedJob.workTypesList }}</p>
+            <p><strong>Location:</strong> {{ selectedJob.locationsList }}</p>
+            <p><strong>Categories:</strong> {{ selectedJob.categoriesList }}</p>
             <div v-html="selectedJob.Overview"></div>
+            <div class="job-detail-view--buttons">
+                 <a :href="selectedJob.ApplyUrl" target="_blank" class="button">Apply now</a>
+                <p><a href="#" class="job-detail-view--text-link">Back to job listings</a></p>
+            </div>
             <p><strong>Advertised:</strong> {{ selectedJob.openingDate }}</p>
             <p><strong>Applications close:</strong> {{ selectedJob.closingDateWritten }} {{ selectedJob.ClosingDateTimeZoneAbbr }}</p>
-            <p><a href="#">Back to search</a></p>
         </div>
     </div>
 </template>
@@ -204,17 +218,122 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+* {
+    font-family: 'Gotham Light';
+}
+
 .jobs-fields {
     display: flex;
 }
 
 .job-field {
     flex: 1;
+    padding: 1rem;
+    border-bottom: 1px solid #eeeeec;
 }
 
 .job-field--position {
     flex-grow: 3;
 }
 
+.button {
+    padding: 1rem;
+    margin-right: 1rem;
+    display: inline-block;
+    background-color: blue;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.job-title {
+    font-size: calc(1.5 * 1rem);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.jobs-fields.jobs-field-headers {
+    background-color: #eeeeec;
+    color: black;
+    font-weight: 700;
+}
+
+.jobs-fields-flex-parent {
+    display: flex;
+    width: 100%;
+    flex-direction: row-reverse;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.job-fields-flex-child {
+    flex-basis: 100%;
+}
+
+.job-detail-view {
+    max-width: 100%;
+}
+
+.job-detail-view--hero {
+    padding: 4rem 1rem 1rem 1rem;
+    margin-bottom: 1rem;
+    background-color: #eeeeec;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.job-detail-view--buttons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.job-detail-view--text-link {
+    color: black;
+}
+
+#job-filter {
+    flex-basis: 10%;
+    display: flex;
+    min-width: 10rem;
+    padding: 0rem 1rem 1rem 1rem;
+}
+
+.job-filters {
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 900px) {
+.jobs-fields-flex-parent {
+        flex-direction: column-reverse;
+    }
+
+.job-filters {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+.filter-title {
+    margin-right: 1rem;
+}
+@media only screen and (max-width: 600px) {
+    .job-field.job-field--type, .job-field.job-field--location {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .job-field.job-field--closing {
+        display: none;
+    }
+    .job-filters {
+        display: none;
+    }
+}
 
 </style>
