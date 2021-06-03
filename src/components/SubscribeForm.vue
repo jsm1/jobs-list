@@ -1,7 +1,6 @@
 <template>
 <div>
     <!-- Place these wherever you'd like the widgets to appear. They can be anywhere, they don't have to be next to each other. -->
-<div id="jobSearch">Loading...</div>
 <div id="jobListing">Loading...</div>
 </div>
 </template>
