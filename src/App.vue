@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      jobsUrl: "https://careers.pageuppeople.com/1029/vmo/en/jobs.json",
+      jobsUrl: "https://careers.pageuppeople.com/1029/val/en/jobs.json",
       showSubscriberForm: false,
     };
   },
