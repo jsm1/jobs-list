@@ -17,6 +17,10 @@
     flex-grow: 3;
   }
 
+  input[type="text"] {
+    padding: 22px 32px;
+  }
+
   .button,
   input[type="submit"] {
     padding: 1rem;
