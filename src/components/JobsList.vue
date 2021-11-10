@@ -192,7 +192,8 @@ export default {
             }
             const parsed = new Date(parseInt(dateString));
             const luxon = DateTime.fromJSDate(parsed);
-            return luxon.setZone('UTC+' + offset).toFormat(format);
+            const roundedOffset = Math.round(parseFloat(offset));
+            return luxon.setZone('UTC+' + roundedOffset).toFormat(format);
         },
         getOpeningDate(job) {
             if (!job.OpeningDateUtc) {
@@ -219,121 +220,6 @@ export default {
 
 <style lang="scss" scoped>
 
-* {
-    font-family: 'Gotham Light';
-}
 
-.jobs-fields {
-    display: flex;
-}
-
-.job-field {
-    flex: 1;
-    padding: 1rem;
-    border-bottom: 1px solid #eeeeec;
-}
-
-.job-field--position {
-    flex-grow: 3;
-}
-
-.button {
-    padding: 1rem;
-    margin-right: 1rem;
-    display: inline-block;
-    background-color: blue;
-    color: white;
-    text-decoration: none;
-    font-weight: 700;
-}
-
-.job-title {
-    font-size: calc(1.5 * 1rem);
-    text-decoration: none;
-    font-weight: 700;
-}
-
-.jobs-fields.jobs-field-headers {
-    background-color: #eeeeec;
-    color: black;
-    font-weight: 700;
-}
-
-.jobs-fields-flex-parent {
-    display: flex;
-    width: 100%;
-    flex-direction: row-reverse;
-    align-items: stretch;
-    justify-content: space-between;
-}
-
-.job-fields-flex-child {
-    flex-basis: 100%;
-}
-
-.job-detail-view {
-    max-width: 100%;
-}
-
-.job-detail-view--hero {
-    padding: 4rem 1rem 1rem 1rem;
-    margin-bottom: 1rem;
-    background-color: #eeeeec;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-
-}
-
-.job-detail-view--buttons {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.job-detail-view--text-link {
-    color: black;
-}
-
-#job-filter {
-    flex-basis: 10%;
-    display: flex;
-    min-width: 10rem;
-    padding: 0rem 1rem 1rem 1rem;
-}
-
-.job-filters {
-    display: flex;
-    flex-direction: column;
-}
-
-@media only screen and (max-width: 900px) {
-.jobs-fields-flex-parent {
-        flex-direction: column-reverse;
-    }
-
-.job-filters {
-        display: flex;
-        flex-direction: row;
-    }
-}
-
-.filter-title {
-    margin-right: 1rem;
-}
-@media only screen and (max-width: 600px) {
-    .job-field.job-field--type, .job-field.job-field--location {
-        display: none;
-    }
-}
-
-@media only screen and (max-width: 320px) {
-    .job-field.job-field--closing {
-        display: none;
-    }
-    .job-filters {
-        display: none;
-    }
-}
 
 </style>

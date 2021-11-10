@@ -1,7 +1,12 @@
 <template>
   <div id="app">
-    <jobs-list :url="jobsUrl" />
+    <jobs-list v-show="!showSubscriberForm" :url="jobsUrl" />
+    <a class="button" @click="showSubscriberForm = !showSubscriberForm">
+      <span v-if="!showSubscriberForm">Subscribe to job updates</span>
+      <span v-else>Back</span>
+    </a>
     <subscribe-form v-if="showSubscriberForm" />
+    <a class="button" href="https://secure.dc2.pageuppeople.com/apply/1029/vm/applicationForm/default.asp" target="_blank">Existing applicant login</a>
   </div>
 </template>
 
@@ -18,8 +23,12 @@ export default {
   data() {
     return {
       jobsUrl: 'https://careers.pageuppeople.com/1029/val/en/jobs.json',
-      showSubscriberForm: true,
+      showSubscriberForm: false,
     };
   },
 }
 </script>
+
+<style lang="scss">
+@import '/src/assets/scss/common.scss';
+</style>
