@@ -1,4 +1,8 @@
 .jobs-list-widget {
+  &:not(.is-outdoor) * {
+    font-family: "Gotham";
+  }
+
   .jobs-fields {
     display: flex;
   }
