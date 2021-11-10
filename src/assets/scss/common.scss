@@ -99,13 +99,27 @@
     flex-wrap: wrap;
   }
 
+  &.is-outdoor .job-detail-view--hero {
+    background: transparent;
+    border-bottom: 2px solid #fff;
+  }
+
   .job-detail-view--buttons {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+  }
+
+  &.is-outdoor .job-detail-view--text-link {
+    color: #fff;
+    padding: 0.7rem 1.169rem;
+    font-weight: 500;
   }
 
   .job-detail-view--text-link {
     color: black;
+    padding: 1.2rem 2rem;
+    background: transparent;
   }
 
   #job-filter {
