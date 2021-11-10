@@ -94,6 +94,7 @@
   .job-detail-view--buttons {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
   }
 
   &.is-outdoor .job-detail-view--text-link {

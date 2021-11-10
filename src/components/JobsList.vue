@@ -58,11 +58,9 @@
           <a :href="selectedJob.ApplyUrl" target="_blank" class="button"
             >Apply now</a
           >
-          <p>
-            <a href="#" class="job-detail-view--text-link"
-              >Back to job listings</a
-            >
-          </p>
+          <a href="#" class="job-detail-view--text-link"
+            >Back to job listings</a
+          >
         </div>
       </div>
       <p><strong>Job no:</strong> {{ selectedJob.Id }}</p>
