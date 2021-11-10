@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="jobs-list-widget has-outline-buttons">
+  <div id="app" class="jobs-list-widget">
     <jobs-list v-show="!showSubscriberForm" :url="jobsUrl" />
     <a class="button" @click="showSubscriberForm = !showSubscriberForm">
       <span v-if="!showSubscriberForm">Subscribe to job updates</span>
