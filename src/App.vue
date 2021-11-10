@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="jobs-list-widget has-outline-buttons">
+  <div id="app" class="jobs-list-widget has-outline-buttons is-outdoor">
     <jobs-list v-show="!showSubscriberForm" :url="jobsUrl" />
     <a class="button" @click="showSubscriberForm = !showSubscriberForm">
       <span v-if="!showSubscriberForm">Subscribe to job updates</span>
@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      jobsUrl: "https://careers.pageuppeople.com/1029/val/en/jobs.json",
+      jobsUrl: "https://careers.pageuppeople.com/1029/vmo/en/jobs.json",
       showSubscriberForm: false,
     };
   },
