@@ -1,6 +1,10 @@
 .jobs-list-widget {
   &:not(.is-outdoor) * {
-    font-family: "Gotham";
+    font-family: "Gotham Light";
+  }
+
+  &:not(.is-outdoor) .job-title {
+    font-family: "Gotham Bold";
   }
 
   .jobs-fields {
